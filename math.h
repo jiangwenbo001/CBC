@@ -4,10 +4,13 @@ using namespace std;
 struct Math{
 	private: 
 		bitset<Prime_max> Prime; 
-		vector<int> prime;int prime_long=1;
+		vector<int> prime;
+		int prime_long=1;
 	public:
 		Math(){
-			Prime.set();Prime[0]=0;Prime[1]=0;
+			Prime.set();
+			Prime[0]=0;
+			Prime[1]=0;
 		}
 		char initialize_prime(int x){
 			if(x>1e9) return ErrArgTooLarge; 
@@ -32,17 +35,14 @@ struct Math{
 			return gcd(y,x%y,res);
 		}
 		char lcm(int x,int y,int& res){
-			int g=gcd(x,y,res);
+			int pres;
+			int g=gcd(x,y,pres);
 			if(g!=0) return g;
 			else{
-				res=(int)((long long)(x*y)/res);
+				if(pres==0)return ErrDivZero;
+				res=(int)((long long)(x*y)/pres);
 				return 0;
 			}
 		}
 		
-} m;
-int main(){
-	cout<<(int)m.initialize_prime(1e2)<<endl;
-	cout<<(int)m.initialize_prime(1e3)<<endl;
-	return 0;
-} 
+};
